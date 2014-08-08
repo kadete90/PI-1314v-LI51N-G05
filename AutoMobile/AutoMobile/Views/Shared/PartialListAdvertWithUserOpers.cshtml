@@ -1,0 +1,15 @@
+﻿@model Model.Advert
+
+
+<tr id="@String.Format("car{0}", @Model)">
+    <td>
+        <img class="advertiseImage" src="~/Content/images/CarPhotos/@Model.Photos.First.Value.Link"></td>
+    <td>
+        <p class="advertData"><a href="@Url.Action("Detailed", "Advertise", new {id = @Model.Id})">@Model.Brand @Model.Model @Model.Version : @Model.Kilometers Km's</a></p>
+        <p class="fuelType advertData">@Model.Year - @Model.FuelType.ToString().Replace('_',' ')</p>
+    </td>
+    <td>@Model.Price.000 €</td>
+    @Html.Partial("PartialUserOpers")
+
+</tr>
+

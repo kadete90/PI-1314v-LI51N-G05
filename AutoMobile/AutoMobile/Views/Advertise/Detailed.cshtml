@@ -1,0 +1,358 @@
+@using System.Diagnostics
+@using Model
+@model  Advert
+@{
+    ViewBag.Title = @Model.Brand + " " + @Model.Model + " " + @Model.Version;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headScript {
+    <link href="~/Content/css/blueimp-gallery.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-image-gallery.min.css" rel="stylesheet" />
+    <link href="~/Content/css/slider.css" rel="stylesheet" />
+
+    <link href="~/Content/css/detailedAd.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery.blueimp-gallery.min.js"></script>
+    <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
+    <script src="~/Scripts/bootstrap-slider.js"></script>
+
+@*    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sendMessage").click(function() {
+                $("#contactForm").validate();
+
+                if ($("#contactForm").valid()) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Advertise/VendorContact/",
+                        cache: false,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({
+                            mailModel: {
+                                Name: $("#MailName").val(),
+                                AdId: $("#AdId").val(),
+                                From: $("#MailFrom").val(),
+                                Message: $("#MailMessage").val(),
+                                Phone: $("#MailPhone").val()
+                            }
+                        }),
+                        dataType: "json",
+                        complete: function(transport) {
+                            alert(transport.status);
+                            if (transport.status == 200) {
+                                $("#formContactContainer").html("<h1>Success</h1>");
+                            } else {
+                                alert("Please try again later");
+                            }
+                        }
+                    });
+                }
+                //so that the page doesn't post back
+                return false;
+            });
+            $("#sendComment").click(function() {
+                $("#commentForm").validate();
+
+                if ($("#commentForm").valid()) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Advertise/Comment/",
+                        cache: false,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({
+                            comment: {
+                                AdId: parseInt($("#advertId").val()),
+                                Rating: parseInt($("#StartRatingSlider").val()),
+                                Message: $("#TextComment").val(),
+                                Username: $("#UserComment").val()
+                            },
+                            url: $("#url").val()
+                        }),
+                        dataType: "json",
+                        complete: function(transport) {
+                            alert(transport.status);
+                            if (transport.status == 200) {
+                                $("#formCommentContainer").html("<h1>Success</h1>");
+                            } else {
+                                alert("Please try again later");
+                            }
+                        }
+                    });
+                }
+                //so that the page doesn't post back
+                return false;
+            });
+        })
+        
+    </script>*@
+}
+
+@section callOnLoadFuncs{
+$(document).ready(function () {
+        $("#input_rate_slider").slider({ tooltip: 'always' });
+        $('body').on('click', '#showHideContact', function () {
+            console.log("toggle clicked");
+            $("#contactForm").toggle();
+        });
+        $('body').on('click', '#showHideComment', function () {
+            console.log("toggle clicked");
+            $("#commentForm").toggle();
+        });
+    });
+}
+@{User u = @ViewBag.user;}
+<div id="detailedView">
+    <!-- jumbotron & Gallery -->
+    <div class="container">
+
+        <!-- Jumbotron -->
+        <div class="jumbotron">
+            <div class="media" id="carInfo">
+                <img class="media-object" src="~/Content/images/CarPhotos/@Model.Photos.First.Value.Link" />
+                <div id="resumeInfo">
+                    @{
+                        if (@Model.Status == AdvertStatusEnum.Expirado)
+                        {
+                            <p><span class="label label-warning">Este anúncio encontra-se Expirado!</span></p>
+                        }
+                        else if (@Model.Status == AdvertStatusEnum.Terminado)
+                        {
+                            <p><span class="label label-danger">Este anúncio encontra-se Terminado! Não pode fazer comentários!</span></p>
+                        }
+                        else if (@Model.Status == AdvertStatusEnum.Cancelado)
+                        {
+                            <p><span class="label label-default">Este anúncio encontra-se Cancelado! Não pode fazer comentários!</span></p>
+                        }
+                    }
+                    <ul class="mylist">
+                        <h2 class="media-heading">
+                            @if (String.IsNullOrEmpty(@Model.Title))
+                            {
+                                    
+                                @String.Format(@Model.Brand + " " + @Model.Model + " " + @Model.Version)
+                            }
+                            else
+                            {
+                                @Model.Title
+                            }
+                        </h2>
+                        <li>Marca: <b>@Model.Brand</b></li>
+                        <li>Modelo: <b>@Model.Model</b></li>
+                        @if (!String.IsNullOrEmpty(Model.Version))
+                        {
+                            <li>Versão: <b>@Model.Version</b></li>
+                        }
+                        <li>Ano: <b>@Model.Year</b></li>
+                        <li>Kilómetros: <b>@Model.Kilometers</b></li>
+                        <li>Combustível: <b>@Model.FuelType.ToString().Replace('_', ' ')</b></li>
+                        <li>Validade: <b>@Model.ValidUntil</b></li>
+                        <li>Valor negociável: <b>@{ var neg = Model.Negotiable ? "Sim" : "Não"; }@neg</b></li>
+                        <li>
+                        Funcionalidades: 
+                        @Html.Partial("PartialCharacteristics", @Model.Characteristics)<li>
+                    </ul>
+                </div>
+                <div id="otherInfo">
+                    <h3>@Model.Price.000 €</h3>
+                    <a id="buyButton" class="btn btn-primary" role="button">Comprar</a>
+                    <div class="qRCode">
+                        <img src="@String.Format("https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=%22{0}%22&choe=UTF-8&chld=H", "http://localhost:16055" + @Url.Action("Detailed", new { id = @Model.Id })))"/>
+                        @*                        TODO meter o caminho a ser calculado de outra forma em vez de ser hardcoded*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Jumbotron -->
+        <!-- Gallery -->
+        <div id="gallery" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Imagens & Videos</h3>
+            </div>
+            <div class="panel-body">
+                <div id="images" class="slides" />
+                @foreach (Photo @photo in @Model.Photos)
+                {
+                    <a href="~/Content/images/CarPhotos/@photo.Link" title="@photo.Name" data-gallery>
+                        <img src="~/Content/images/CarPhotos/@photo.Link" alt="@photo.Name" />
+                    </a>
+                }
+            </div>
+        </div>
+        <!-- /Gallery-->
+    </div>
+    <!--/ jumbotron & Gallery -->
+    <!-- Description -->
+    @if (!String.IsNullOrEmpty(@Model.Description))
+    {
+        <div id="description" class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Equipamentos & Notas</h2>
+            </div>
+            <div class="panel-body" id="Information">
+                <p>
+                    <td>
+                        @foreach (var @stuff in @Model.Description.Split(';'))
+                        {<li>@stuff</li>}
+
+                    </td>
+                </p>
+            </div>
+            <!-- /Description -->
+        </div>
+    }
+    <!-- /Description -->
+    <!-- Announcer -->
+    <div id="announcer" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Vendedor</h2>
+        </div>
+        <div id="announcerinfo">
+            <h3>Anunciante: @ViewBag.user.FullName</h3>
+            <ul class=" mylist">
+                <li>Telefone: @ViewBag.user.PhoneNr</li>
+                <li>Email: @ViewBag.user.Email</li>
+                @if (@u.GeoLocalization != null)
+                {
+                    <li>Morada Completa: u.GeoLocalization.FullAdress</li>
+                }
+            </ul>
+        </div>
+        <div id="showHideContact" class="btn btn-default navbar-btn"><b><span class="glyphicon glyphicon-envelope"></span>Contactar</b></div>
+
+ 
+        <form id="contactForm" role="form" method="post" action="@Url.Action("VendorContact", "Advertise")" enctype="multipart/form-data">
+            <div class="col-sm-4 col-md-6">
+                <div class="form-group" id="name">
+                    <label>O seu nome:</label>
+                    <input type="text" class="form-control" name="Name" id="MailName" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-6">
+                <div class="form-group" id="email">
+                    <label>E-mail: </label>
+                    <input type="email" class="form-control" name="From" id="MailFrom" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="form-group" id="phone">
+                    <label>Telefone/Telemóvel: </label>
+                    <input type="tel" class="form-control" name="Phone" id="MailPhone" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-8">
+                <div class="form-group" id="text">
+                    <label>Texto: </label>
+                    <textarea class="form-control" name="Message" id="MailMessage" maxlength="400"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <div class="form-group">
+                    <input type="number" class="hidden" name="AdId" id="AdId" value="@Model.Id" >
+                </div>
+            </div>
+            <button id="sendMessage" type="submit" class="btn btn-default">Enviar</button>
+         </form>
+
+    </div>
+    <!-- /Announcer -->
+    <!-- Map -->
+    @if (@u.GeoLocalization != null && u.GeoLocalization.hasCoordinate)
+    {
+        <div id="mapPainel" class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Mapa</h2>
+            </div>
+            <div id="map_canvas">
+                <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.pt/maps?f=q&amp;source=s_q&amp;hl=pt-PT&amp;geocode=&amp;q=cascais&amp;sll=38.739732,-9.421371&amp;sspn=0.090379,0.154324&amp;ie=UTF8&amp;hq=&amp;hnear=Cascais,+Lisboa&amp;t=m&amp;z=12&amp;ll=38.696757,-9.420744&amp;output=embed"></iframe>
+            </div>
+        </div>
+    }
+    <!-- /Map -->
+    <!-- Comments -->
+    <div id="comments" class="panel panel-default">
+        <input type="hidden" name="adId" id="advert" value="1" />
+        <div class="panel-heading">
+            <h2 class="panel-title">Comentários</h2>
+        </div>
+        <div id="commentList" class="list-group">
+            <div class="list-group-item">
+
+                @foreach (Comment com in Model.Comments)
+                {
+                    @Html.Partial("PartialCommentary", com)
+                    
+                }
+
+            </div>
+        </div>
+
+        <div id="showHideComment" class="btn btn-default navbar-btn"><b><span class="glyphicon glyphicon-star"></span>Comentar</b></div>
+        @{ var loggedUser = User.Identity.IsAuthenticated ? User.Identity.Name : "Anónimo";}
+        <form id="commentForm" method="post" action="@Url.Action("Comment","Advertise")" class="input-group"  enctype="multipart/form-data">
+            <input type="hidden" class="form-control" id="UserComment" name = "Username" value="@loggedUser"/>
+            <div class="slider slider-horizontal" id="RatingSlider">
+                <div class="slider-track">
+                    <div class="slider-selection"></div>
+                    <div class="slider-handle round"></div>
+                    <div class="slider-handle round"></div>
+                </div>
+                <div class="tooltip top in">
+                    <div class="tooltip-arrow"></div>
+                    <div class="tooltip-inner"></div>
+                </div>
+                <input id="input_rate_slider" class="span2 sliderClicker" type="number" data-slider-id='RatingSlider' data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="5" name="Rating">
+                <input type="number" class="hidden" id="StartRatingSlider" name="Rating">
+                <input type="number" class="hidden" name="AdId" id="advertId" value="@Model.Id" >
+                <input type="url" class="hidden" name="url" id="url" 
+                    value="@{
+                        Debug.Assert(Request.Url != null, "Request.Url != null");
+                    }
+                    @Request.Url.AbsoluteUri" >
+            </div>
+            <div id="newComment" class="form-group">
+                <textarea class="form-control" id="TextComment" name="Message" maxlength="600"></textarea>
+            </div>
+            <button id="sendComment" type="submit" class="btn btn-default">Enviar</button>
+        </form>
+
+        <!-- /input-group -->
+    </div>
+    <!-- /Comments -->
+    <!-- Blueimp-gallery -->
+    <div id="blueimp-gallery" class="blueimp-gallery">
+        <!-- The container for the modal slides -->
+        <div class="slides"></div>
+        <!-- Controls for the borderless lightbox -->
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+        <!-- The modal dialog, which will be used to wrap the lightbox content -->
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body next"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left prev">
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            Previous
+                       
+                        </button>
+                        <button type="button" class="btn btn-primary next">
+                            Next
+                                   
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Blueimp-gallery -->
+</div>

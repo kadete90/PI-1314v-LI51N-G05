@@ -1,0 +1,96 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="~/Content/css/global.css" rel="stylesheet" media="screen">
+    <link href="~/Content/images/icon.ico" rel="SHORTCUT ICON" />
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.ddslick.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/bootstrap-slider.js"></script>
+    <script>
+        window.onload = function () {
+
+            $(document).ready(function () {
+                /*TODO meter num ficheiro à parte */
+                $(".sliderClicker").slider().on('slideStop', function (ev) {
+                    var sliderElement = this;
+                    var sliderID = sliderElement.attributes["data-slider-id"].value;
+                    var y = $("#" + sliderID + " .tooltip-inner")[0].innerText;
+                    var values = y.split(":");
+                    var startFormId = "Start" + sliderID;
+                    var endFormId = "End" + sliderID;
+
+                    var startForm = $("#" + startFormId)[0];
+                    var endForm = $("#" + endFormId)[0];
+                    startForm.value = values[0].trim();
+
+                    if (endForm && values[1]) {
+                        endForm.value = values[1].trim();
+                    }
+
+                    console.log("Slider id: " + sliderID + ", start: " + startForm.value + ", end: " + endForm.value);
+                });
+            });
+            @if (IsSectionDefined("callOnLoadFuncs"))
+            {
+                @RenderSection("callOnLoadFuncs");
+            }
+        };
+    </script>
+    @if (IsSectionDefined("headScript"))
+    {
+        @RenderSection("headScript")
+    }
+</head>
+<body>
+
+    <!-- Fixed Navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index","Home")">
+                    <p class="navbar-brand">AutoMobile</p>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("Index","Advertise")">Anúncios</a></li>
+                    <li><a href="@Url.Action("Search","Advertise")">Procurar</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (!User.Identity.IsAuthenticated)
+                     {
+                        <li><a href="@Url.Action("LogIn","Account")">Log In</a></li>
+                        <li><a href="@Url.Action("Create","Account")">Registar</a></li>
+                     }
+                    else
+                    {
+                         <li><a href="@Url.Action("Index","Account")">Gerir Conta</a></li> 
+                         <li><a href="@Url.Action("Logout","Account")">Log Out</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Navbar -->
+
+    @RenderBody()
+    <br />
+    <footer><span class="label label-default">Copyright G05 PI 13/14 SVer. All Rights Reserved.</span></footer>
+</body>
+</html>

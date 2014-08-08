@@ -1,0 +1,160 @@
+﻿@model  Model.Advert
+@{
+    ViewBag.Title = "Adicionar anúncio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headScript {
+    <link href="~/Content/css/searchAd.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function AjaxDropDown() {
+            // inicializar dropdown do modelo quando é alterado o dropdown da marca
+            $(document).ready(function () {
+                $("#Brand").change(function () {
+                    var brandName = $("#Brand").val();
+                    if (brandName) {
+                        var ddModel = $("#Model");
+                        ddModel.empty(); // this line is for clear all items from Model dropdown
+                        ddModel.append($("<option></option").val("").html("Seleccione o Modelo"));
+
+                        // chamada ao Action Controller via Jquery
+                        $.ajax({
+                            url: "@Url.Action("GetModelsByBrand", "Advertise")",
+                            type: "GET",
+                            data: { brand: brandName },
+                            dataType: "json",
+                            success: function (data) {
+                                $.each(data, function (i, item) {
+                                    ddModel.append(
+                                        $("<option></option>").val(item.title).html(item.title)
+                                    );
+                                });
+                            },
+                            error: function () {
+                                alert("Erro! Desative o AdBlock!");
+                            }
+                        });
+                    }
+
+                });
+            });
+        }
+    </script>
+}
+
+@section callOnLoadFuncs{
+    AjaxDropDown();
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>Adicione o seu Carro! <small>Os campos seguidos de *, são de preenchimento obrigatório</small></h2>
+    </div>
+</div>
+<div class="container">
+    @using (Html.BeginForm("Add", "Advertise", FormMethod.Post))
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informação básica<small> informação referente ao carro</small></h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label>Marca*: </label>
+                        @Html.DropDownList("Brand", (IEnumerable<SelectListItem>) ViewData["Brand"], "Seleccione", new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Brand)
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label>Modelo*: </label>
+                        @Html.DropDownList("Model", Enumerable.Empty<SelectListItem>(), "Seleccione a Marca", new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Model)
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label>Versão: </label>
+                        <input type="text" class="form-control" name="Version" />
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label >Ano*: </label>
+                        <input type="number" class="form-control" name="Year" />
+                        @Html.ValidationMessageFor(m => m.Year)
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label >Quilómetros*: </label>
+                        <input type="number" class="form-control" name="Kilometers" />
+                        @Html.ValidationMessageFor(m => m.Kilometers)
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label >Combustível*: </label>
+                        @Html.Partial("PartialDropdownFuelTypeEnum")
+                        @Html.ValidationMessageFor(m => m.FuelType)
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label >Preço*: </label>
+                        <input type="number" class="form-control" name="Price" />
+                        @Html.ValidationMessageFor(m => m.Price)
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group checkbox">
+                        <label>Negociável?</label>
+                        @Html.CheckBox("Negotiable")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Descrição ou notas <small> ; (ponto e vírgula) para listar </small></h3>
+            </div>
+            <div class="panel-body">
+                <textarea class="form-control" maxlength="500" name="Description"></textarea>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Características do Carro<small> características e extras </small></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    @Html.Partial("PartialCharacteristicsForm")
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Fotos<small> Adicionar mais fotos ajuda a escolher melhor</small></h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Fotos & videos: </label>
+                    <input type="file" name="otherPhotoList" accept="image/*;videos/*" multiple="" />
+                    @Html.ValidationMessageFor(m => m.Photos)
+                </div>
+            </div>
+            <!--/container-->
+        </div>
+        <button type="submit" class="btn btn-primary">>> Criar <<</button>
+
+    }
+</div>

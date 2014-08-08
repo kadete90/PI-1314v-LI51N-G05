@@ -1,0 +1,47 @@
+@using Model;
+@model IEnumerable<IGrouping<String, Advert>>
+
+@{
+    ViewBag.Title = "Anúncios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headScript {
+    <link href="~/Content/css/listAd.css" rel="stylesheet" />
+}
+<!--Container -->
+<div class="container" id="containerId">
+    <!-- Car List -->
+    @foreach (var brandGroup in @Model)
+    {
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <div class="brand_logo">
+                    <span class="@String.Format("{0}_logo", brandGroup.Key.ToLower())"/>
+                    <img src="@Url.Content("~/Content/Images/CarBrands/")@String.Format("{0}_logo.jpg", brandGroup.Key.ToLower())"/>
+
+                </div>
+                <div class="bname">@brandGroup.Key</div>
+            </div>
+            <!-- Table -->
+            <table class="table" id="@brandGroup.Key">
+                <tr id="headers">
+                    <td class="carPhoto"><b>Foto</b></td>
+                    <td class="carName"><b>Nome</b></td>
+                    <td class="price"><b>Preço</b></td>
+                    <td class="accessories"><b>Acessórios</b></td>
+                </tr>
+                @foreach (var advert in brandGroup)
+                {
+                    @Html.Partial("PartialListAdvertWithCharacteristics", advert)
+                }
+            </table>
+            <!-- Table -->
+        </div>
+    }
+    @Html.Partial("PartialPagination", 1)
+
+</div>
+<!-- Car
+    List -->
+

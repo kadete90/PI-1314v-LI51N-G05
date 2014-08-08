@@ -1,0 +1,22 @@
+.navbar-default .navbar-brand{
+    color:rgb(200, 100, 0);
+}
+.navbar-brand {
+    font-size: 30px;
+    line-height: 20px;
+}
+.sliderElement{
+	text-align:center;
+}
+.carCharacteristicsCheckbox{
+	float:right;
+	position:relative;
+	right: 30%;
+}
+.carCharacteristicsLabel{
+	float:center;
+	padding-left:5%;
+}
+.carCharacteristicsIcon{
+	float:left;
+}

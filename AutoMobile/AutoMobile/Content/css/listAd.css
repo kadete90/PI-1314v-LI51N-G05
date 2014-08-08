@@ -1,0 +1,45 @@
+table{
+    text-align: center;
+}
+.advertiseImage{
+    height:60px;
+    max-width: 200px;
+}
+.advertData a:hover{
+	font-weight:bold
+}
+.panel-heading {
+    padding-top: 3px;
+}
+.fuelType{
+    color: grey;
+}
+.advertData{
+	text-align:center;
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+.carName{
+    width: 45%;
+}
+.carPhoto{
+    width: 10%;
+}
+.price{
+    width: 15%;
+}
+.accessories, .options{
+    width: 30%;
+}
+.brand_logo {
+    width: 38px;
+    height: 38px;
+    float: left;
+    background-repeat: no-repeat;
+}
+.bname{
+    margin-left: 50px;
+    margin-top: 6px;
+    vertical-align:text-bottom;
+    text-align:left
+}

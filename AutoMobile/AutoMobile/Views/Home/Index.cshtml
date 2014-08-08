@@ -1,0 +1,66 @@
+﻿@using Model;
+@model Tuple<IEnumerable<Advert>, IEnumerable<User>>
+@{
+    ViewBag.Title = "AutoMobile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section headScript {
+    <link href="~/Content/css/Home.css" rel="stylesheet" />
+    <link href="~/Content/css/listAd.css" rel="stylesheet" />
+}
+<!--Container -->
+<div class="container" id="containerId">
+    <img src="~/Content/images/banner.png" alt=""/>
+    <div class="col-md-7 col-lg-9">
+        <!-- Car List -->
+        <div class="panel panel-info ">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <div class="bname">Últimos carros inseridos</div>
+            </div>
+            <!-- Table -->
+            <table class="table">
+                <tr id="headers">
+                    <td class="carPhoto"><b>Foto</b></td>
+                    <td class="carName"><b>Nome</b></td>
+                    <td class="price"><b>Preço</b></td>
+                    <td class="accessories"><b>Acessórios</b></td>
+                </tr>
+                @foreach (var advert in @Model.Item1)
+                {
+                    Html.RenderPartial("PartialListAdvertWithCharacteristics", @advert);
+                }
+            </table>
+            <!-- Table -->
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <div class="bname ">Últimos Utilizadores registados</div>
+            </div>
+            <!-- Table -->
+            <table class="table">
+                <tr id="headersUser">
+                    <td class="username"><b>Username</b></td>
+                    <td class="district"><b>Districto</b></td>
+                </tr>
+                @foreach (var user in @Model.Item2)
+                {
+                    <tr id="@String.Format("user{0}", @user.Username)">
+                        <td>
+                            <p>@user.Username</p>
+                        </td>
+                        <td>
+                            @user.District
+                        </td>
+                    </tr>
+                }
+            </table>
+            <!-- Table -->
+        </div>
+    </div>
+</div>
+<!-- Car List -->

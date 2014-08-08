@@ -1,0 +1,30 @@
+﻿@model  Model.User
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "../Shared/_AccountLayout.cshtml";
+}
+
+@section headScript {
+    <link href="~/Content/css/account.css" rel="stylesheet" />
+}
+
+<div id="indexAccount" class="ulAccountScheme">
+    <h2>@Model.Username</h2>
+    <ul>
+        <li>@Html.Label("Nome"): @Model.FullName</li>
+        <li>@Html.Label("Email"): @Model.Email</li>
+        <li>@Html.Label("Telemóvel"): @Model.PhoneNr</li>
+        <li>@Html.Label("Districto"): @Model.District.ToString().Replace('_', ' ')</li>
+        @*<li>@Html.Label("Data de Nascimento:"): @Model.BirthDate.ToShortDateString()</li>*@
+        <li>@Html.Label("Data de Registo:") @Model.RegisterDate.ToShortDateString()</li>
+
+        @if (Model.IsStand)
+        {
+            <h1>Informação do Stand</h1>
+            <li>@Html.Label("Link"): @Model.StandLink</li>
+            <li>@Html.Label("Endereço"): @Model.GeoLocalization.FullAdress</li>
+        }
+
+    </ul>
+</div>

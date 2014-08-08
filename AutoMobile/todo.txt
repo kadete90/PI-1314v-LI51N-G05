@@ -1,0 +1,9 @@
+* Deduzir concelho e distrito a partir da latitude e long actual
+	-> usar http://augusttown.blogspot.pt/2010/04/several-approaches-to-programmatically.html
+		http://blog.programmableweb.com/2009/03/31/3-free-ways-to-geolocate-by-ip/
+OU
+* Deduzir coordenadas a partir do endereço
+
+* Advertise/Edit gerir fotos
+
+* fazer fix do dropdown (Advertise:Add & Search)

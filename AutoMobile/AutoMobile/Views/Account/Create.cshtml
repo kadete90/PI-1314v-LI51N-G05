@@ -1,0 +1,96 @@
+﻿@model  Model.User
+@{
+    ViewBag.Title = "Criar conta";
+    Layout = "../Shared/_AccountLayout.cshtml";
+}
+
+@section headScript {
+    <link href="~/Content/css/account.css" rel="stylesheet" />
+}
+<div id="EditAccount" class="ulAccountScheme">
+    <form role="form" method="POST" action="@Url.Action("Create", "Account")" enctype="multipart/form-data">
+        <h2>Registar</h2>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informação do User <small>* campos obrigatório</small></h3>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Username*:</label>
+                    <input type="text" class="form-control disabled" name="username" />
+                    @Html.ValidationMessageFor(m => m.Username)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Password*:</label>
+                    <input type="password" class="form-control" name="Password" />
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label>Nome*:</label>
+                    <input type="text" class="form-control" name="fullName" />
+                    @Html.ValidationMessageFor(m => m.FullName)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Districto*:</label>
+                    @Html.Partial("PartialDropdownDistrictEnum")
+                    @Html.ValidationMessageFor(m => m.District)
+
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label>Email*:</label>
+                    <input type="email" class="form-control" name="email" />
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Telemóvel: </label>
+                    <input type="tel" class="form-control" name="phoneNr" />
+                    @Html.ValidationMessageFor(m => m.PhoneNr)
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group checkbox">
+                    <label>É Stand?</label>
+                    <input type="checkbox" name="isStand"/>
+                    @Html.EditorFor(m => m.IsStand)
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informação do Stand <small>* campo obrigatório</small></h3>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label>Link: </label>
+                    <input type="text" class="form-control" name="standLink" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label>Endereço*:</label>
+                    <input type="text" class="form-control" name="fullAdress" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" id="editAccountButton" type="submit">>> Criar << </button>
+        </div>
+    </form>
+</div>

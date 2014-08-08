@@ -1,0 +1,12 @@
+﻿@model Model.Characteristics
+
+@{     
+     for (int i = 0; i < @Model.Length; i++)
+     {
+         var element = @Model.GetElement(i);
+         string url = element.Has ? @String.Format("~/Content/images/CarCharacteristics/a{0}.jpg", i + 1) : "~/Content/images/CarCharacteristics/a0.jpg";
+         url = Url.Content(url);
+         <img src="@url" width="21" title="@element.Title" /> //add class to put width 21 in css
+         
+     }
+ }

@@ -1,0 +1,136 @@
+﻿@using AutoMobile
+@model AutoMobile.Models.FilterAdvertise
+@{
+    ViewBag.Title = "Procurar anúncio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headScript {
+    <link href="~/Content/css/slider.css" rel="stylesheet" />
+    <link href="~/Content/css/searchAd.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/bootstrap-slider.js"></script>
+    <script type="text/javascript">
+        function AjaxDropDown() {
+            // inicializar dropdown do modelo quando é alterado o dropdown da marca
+            $(document).ready(function() {
+                $("#Brand").change(function() {
+                    var brandName = $("#Brand").val();
+                    if (brandName) {
+                        var ddModel = $("#Model");
+                        ddModel.empty(); // this line is for clear all items from Model dropdown
+                        ddModel.append($("<option></option").val("").html("Seleccione o Modelo"));
+
+                        // chamada ao Action Controller via Jquery
+                        $.ajax({
+                            url: "@Url.Action("GetModelsByBrand", "Advertise")",
+                            type: "GET",
+                            data: { brand: brandName },
+                            dataType: "json",
+                            success: function(data) {
+                                $.each(data, function(i, item) {
+                                    ddModel.append(
+                                        $("<option></option>").val(item.title).html(item.title)
+                                    );
+                                });
+                            },
+                            error: function() {
+                                alert("Erro! Desative o AdBlock!");
+                            }
+                        });
+                    }
+                });
+                $("#submitButton").click(function() {
+                    SetSlidersValues();
+                });
+               
+            });
+        }
+
+        function SetSlidersValues() {
+            var YearSlider = $("#YearSlider").text();
+            var KmSlider = $("#KmSlider").text();
+            var PriceSlider = $("#PriceSlider").text();
+
+            var idx = YearSlider.indexOf(":");
+            document.getElementById("StartYear").value = parseInt(YearSlider.substring(0, idx-1));
+            document.getElementById("EndYear").value = parseInt(YearSlider.substring(idx + 2));
+            
+            idx = KmSlider.indexOf(":");
+            document.getElementById("StartKm").value = parseFloat(KmSlider.substring(0, idx-1));
+            document.getElementById("EndKm").value = parseFloat(KmSlider.substring(idx + 2));
+
+            idx = PriceSlider.indexOf(":");
+            document.getElementById("StartPrice").value = parseFloat(PriceSlider.substring(0, idx-1));
+            document.getElementById("EndPrice").value = parseFloat(PriceSlider.substring(idx + 2));
+        }
+    </script>
+}
+
+@section callOnLoadFuncs{
+    AjaxDropDown();
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>Pesquise o carro</h2>
+    </div>
+</div>
+<div class="container">
+    @using (Html.BeginForm("Searched", "Advertise", FormMethod.Get))
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search Car<small> </small></h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label>Marca: </label>
+                        @Html.DropDownList("Brand", (IEnumerable<SelectListItem>) ViewData["Brand"], "Seleccione", new {@class = "form-control"})
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label>Modelo: </label>
+                        @Html.DropDownList("Model", Enumerable.Empty<SelectListItem>(), "Seleccione a Marca", new {@class = "form-control"})
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label>Combustível: </label>
+                        @Html.Partial("PartialDropdownFuelTypeEnum")
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label>Distrito: </label>
+                        @Html.Partial("PartialDropdownDistrictEnum")
+                    </div>
+                </div>
+
+                @Html.MyBootstrapSlider("Year", ViewData["MinYear"], ViewData["MaxYear"], "", 1, null)
+                @Html.MyBootstrapSlider("Km", ViewData["MinKm"], ViewData["MaxKm"], ".000 km", 1, "em milhares")
+                @Html.MyBootstrapSlider("Price", ViewData["MinPrice"], ViewData["MaxPrice"],".000 €", 1, "em milhares")
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group checkbox">
+                        <label>Negociável?</label>
+                        @Html.CheckBox("Negotiable")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Características do Carro<small> características e extras </small></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    @Html.Partial("PartialCharacteristicsForm")
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default" id="submitButton">Procurar</button>
+    }
+</div>
+
+<!--/container-->

@@ -1,0 +1,50 @@
+﻿@model  Model.User
+@{
+    ViewBag.Title = "Editar anúncio";
+    Layout = "../Shared/_AccountLayout.cshtml";
+}
+
+@section headScript {
+    <link href="~/Content/css/account.css" rel="stylesheet" />
+}
+
+<div id="EditAdvertise" class="ulAccountScheme">
+
+    <form role="form" method="POST" action="@Url.Action("Edit","Advertise")" enctype="multipart/form-data">
+        <h2>Editar anúncio</h2>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informação do anúncio <small>* campos obrigatório</small></h3>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-6 col-md-3">
+                <div class="form-group">
+                    <label>Preço* (em milhares):</label>
+                    <input type="number" class="form-control" name="Price" value='@ViewBag.advert.Price' />
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="form-group checkbox">
+                    <label>Negociável?</label>
+                    @Html.CheckBox("Negotiable")
+                </div>
+            </div>
+            <div id="description" class="col-sm-6 col-md-12">
+                <label>Descrição ou notas:</label> <small>; (ponto e vírgula) para separar por item</small>
+                <textarea class="form-control" maxlength="500" name="Description"></textarea>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Password*:</label>
+                    <input type="password" class="form-control" name="Password" />
+                </div>
+            </div>
+        </div>
+        >>> Gerir Fotos(adicionar, remover, alterar nome)
+        <div class="form-group">
+            <a id="backIndex" href="@Url.Action("ManageAd", "Account")" class="btn btn-primary">Voltar</></a>
+            <button class="btn btn-warning" id="editAccountButton" type="submit">Alterar</button>
+        </div>
+    </form>
+</div>

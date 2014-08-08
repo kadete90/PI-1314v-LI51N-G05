@@ -1,0 +1,20 @@
+﻿@model Model.Comment
+
+
+
+                   @* Outra versao*@      
+@*                        <h3 class="list-group-item-heading">@(Model.Username) / *@
+@*                            <small> dia: </small></h3>*@
+@**@
+@*                        <p class="list-group-item-text">@(Model.Message)</p>*@
+                        
+
+
+<div class="center-block">
+<tr>
+    <td>@Model.Username</td>
+    <td><span class="badge">@Model.Rating<span class="glyphicon glyphicon-star"></span></span></td>
+    @*    <td>@Model.Date</td>*@
+    <td id="ratingDescr">@Model.Message</td>
+</tr>
+    </div>

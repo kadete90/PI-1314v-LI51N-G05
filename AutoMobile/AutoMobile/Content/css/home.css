@@ -1,0 +1,52 @@
+#announcerinfo{
+	padding-left: 50px;
+}
+#testimonialsTitle{
+    padding-bottom:20px;
+}
+.popupSelected{
+    height:60px;
+    max-width: 200px;
+}
+.fuelType{
+    color: grey;
+}
+.brand_logo {
+    width: 38px;
+    height: 38px;
+    float: left;
+    background-repeat: no-repeat;
+}
+.bname{
+    margin-left: 50px;
+    margin-top: 6px;
+    vertical-align:text-bottom;
+    text-align:left
+}
+
+
+
+#carSelector{
+    width:130px;
+    float: left;
+}
+#priceSelector{
+    float: left;
+    margin-left:10px;
+}
+.carName{
+    width: 55%;
+}
+.carPhoto{
+    width: 10%;
+}
+.carName{
+    width: 50%;
+}
+.price{
+    width: 10%;
+}
+.accessories{
+   width: 20%;
+}
+

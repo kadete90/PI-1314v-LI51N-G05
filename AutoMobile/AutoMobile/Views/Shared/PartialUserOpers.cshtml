@@ -1,0 +1,29 @@
+﻿@using Model
+@model Model.Advert
+
+
+<td>
+    <div id ="statusManageAd">
+        @if (Model.Status == AdvertStatusEnum.Expirado){
+            <span class="label label-warning">@Html.Label(Model.Status.ToString())</span>
+        }
+        else if (Model.Status == AdvertStatusEnum.Cancelado){
+            <span class="label label-danger">@Html.Label(Model.Status.ToString())</span>  
+        }
+        else if (Model.Status == AdvertStatusEnum.Terminado){
+            <span class="label label-default">@Html.Label(Model.Status.ToString())</span>  
+        }
+        else{
+            <span class="label label-success">@Html.Label(Model.Status.ToString()) até @Model.ValidUntil.ToString("dd/MM/yyyy")</span>
+        }          
+    </div>
+    <a href="@Url.Action("Edit","Advertise",new{id=@Model.Id})"><img src="@Url.Content("~/Content/Images/UserManageIcons/pencil-icon.png")" title="Edita o anúncio"/></a>
+    @if (Model.Status == AdvertStatusEnum.Ativo){
+        <a href="@Url.Action("Cancel", "Advertise", new {id = @Model.Id})"><img src="@Url.Content("~/Content/Images/UserManageIcons/Button-Stop-icon.png")" title="Cancela o anúncio" /></a>
+    }
+    else{
+        <a href="@Url.Action("Activate","Advertise",new{id=@Model.Id})"><img src="@Url.Content("~/Content/Images/UserManageIcons/Accept-icon.png")" title="Ativa o anúncio" /></a>
+    }      
+    <a onclick="checkDeleteAdvertise(@Model.Id)"><img src="@Url.Content("~/Content/Images/UserManageIcons/Quit-icon.png")" title="Apaga o anúncio" /></a>
+
+</td>

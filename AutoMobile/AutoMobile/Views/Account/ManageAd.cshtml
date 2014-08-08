@@ -1,0 +1,66 @@
+@using Model
+@model IEnumerable<IGrouping<String, Advert>>
+
+@{
+    ViewBag.Title = "Gerir anúncios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headScript {
+    <link href="~/Content/css/listAd.css" rel="stylesheet" />
+}
+<!--Container -->
+<div class="container" id="containerId">
+    <!-- Car List -->
+    <span id="checkPassword" class="label label-danger center-block"></span>
+    @foreach (var brandGroup in @Model)
+    {
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <div class="brand_logo">
+                    <span class="@String.Format("{0}_logo", brandGroup.Key.ToLower())"></span>
+                    <img src="@Url.Content("~/Content/Images/CarBrands/")@String.Format("{0}_logo.jpg", brandGroup.Key.ToLower())" alt=""/>
+
+                </div>
+                <div class="bname">@brandGroup.Key</div>
+            </div>
+            <!-- Table -->
+            <table class="table" id="@brandGroup.Key">
+                <tr id="headers">
+                    <td class="carPhoto"><b>Foto</b></td>
+                    <td class="carName"><b>Nome</b></td>
+                    <td class="price"><b>Preço</b></td>
+                    <td class="options"><b>Opções</b></td>
+                </tr>
+                @foreach (var advert in brandGroup)
+                {
+                    @Html.Partial("PartialListAdvertWithUserOpers", advert)
+                }
+            </table>
+            <script>
+                function checkDeleteAdvertise(idAdvert) {
+                    var password = prompt("Confirme a sua password:");
+                    if (password != null) {
+                        @{ User @user = ViewBag.User;}
+                        if (password != String(@user.Password))
+                            document.getElementById("checkPassword").innerHTML = "Anuncio " + idAdvert + ", Password incorrecta! Tente Novamente!!";
+                        else {
+                            $.ajax({
+                                url: '@Url.Action("Delete", "Advertise")',
+                                method: 'POST',
+                                data: { id: idAdvert },
+                                success: function () {
+                                    alert("O anúncio irá ser apagado!");
+                                    window.location.href = '@Url.Action("ManageAd","Account")';
+                                }
+                            });
+                        }
+                    }
+                }
+            </script>
+            <!-- Table -->
+        </div>
+    }
+    @Html.Partial("PartialPagination", 1)
+</div>
+<!-- Car List -->
