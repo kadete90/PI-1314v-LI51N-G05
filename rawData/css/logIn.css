@@ -1,0 +1,29 @@
+.panel{
+	width: 300px;
+	size: 20%;	
+}
+
+.panel .container{
+	width: 300px;
+}
+
+body{
+    min-height:600px;
+    padding-top:100px;
+}
+
+.navbar-default .navbar-brand{
+    color:rgb(200, 100, 0);
+}
+
+#login{
+    width: 330px; ;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    line-height: 20px;
+}
+

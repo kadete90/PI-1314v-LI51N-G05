@@ -1,0 +1,23 @@
+.col-md-1{
+	height :19px;
+	width: 21px;
+}
+
+body{
+    min-height:1500px;
+    padding-top:70px;
+}
+
+.navbar-default .navbar-brand{
+    color:rgb(200, 100, 0);
+}
+
+.navbar-brand {
+    font-size: 30px;
+    line-height: 20px;
+}
+
+#description{
+	width: 90%;
+	padding-left: 10%;
+}

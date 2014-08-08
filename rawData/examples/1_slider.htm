@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html style="">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Bootstrap Slider Example</title>
+
+    <!-- core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/slider.css" rel="stylesheet">
+  </head>
+
+  <body style="">
+
+
+      		<div class="well">
+			<br/>
+				<div class="slider slider-horizontal">
+					<div class="slider-track">
+						<div class="slider-selection"></div>
+						<div class="slider-handle round"></div>
+						<div class="slider-handle round"></div>
+					</div>
+					<div class="tooltip top in">
+						<div class="tooltip-arrow"></div>
+						<div class="tooltip-inner">5</div>
+					</div>
+					<input id="slider" type="text"  data-slider-id='ex1Slider' data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="5">
+				</div>
+			</div>
+	
+    <!-- core JavaScript
+    ================================================== -->
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+	        $("#slider").slider({tooltip:'always'}); 
+    	});
+    </script>
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+</body></html>

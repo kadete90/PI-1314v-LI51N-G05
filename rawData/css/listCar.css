@@ -1,0 +1,116 @@
+body{
+    padding-top:70px;
+    text-align:center;
+}
+.jumbotron, .panel{
+	margin-bottom:10px;
+}
+.media-object{
+    width: 400px;
+    height: 300px;
+}
+
+.media-body{
+    padding-left: 50px;
+}
+
+.col-md-3{
+    width: 15%;
+}
+
+#announcerinfo{
+	padding-left: 50px;
+}
+
+.mylist{
+    list-style:none;
+}
+
+#testimonialsTitle{
+    padding-bottom:20px;
+}
+
+.list-group-item-heading{
+    font-size:16px;
+    font:bold;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    line-height: 20px;
+}
+
+.navbar-default .navbar-brand{
+    color:rgb(200, 100, 0);
+}
+.panel panel-info{
+    
+}
+.table{
+    display: grid;
+
+}
+.popupSelected{
+    height:60px;
+    max-width: 200px;
+}
+.fuelType{
+    color: grey;
+}
+.brand_logo {
+    width: 38px;
+    height: 38px;
+    float: left;
+    background-repeat: no-repeat;
+}
+.bname{
+    margin-left: -left: 50px;
+    margin-top: 6px;
+    vertical-align:text-bottom;
+    text-align:left
+}
+
+/*TO DO*/
+.logo_ma13 {
+    background: url(../images/cot_brands_and_log.png) -226px 0;
+    background-repeat: no-repeat;
+}
+.logo_ma19 {
+    background: url(../images/cot_brands_and_log.png) -513px 0;
+    background-repeat: no-repeat;
+}
+/*!TO DO*/
+
+#carSelector{
+    width:130px;
+    float: left;
+}
+#priceSelector{
+    float: left;
+    margin-left:10px;
+}
+.slider.slider-horizontal{
+    width: 100px;
+}
+.col-sm-2 control-label{
+     text-align: center;
+}
+img{
+    border-radius: 10px;
+}
+.carName{
+    width: 55%;
+}
+.carPhoto{
+    width: 8%;
+}
+.carName{
+    width: 55%;
+}
+.price{
+    width: 10%;
+}
+.accessories{
+   width: 20%;
+}
+

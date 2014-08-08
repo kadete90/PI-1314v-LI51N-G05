@@ -1,0 +1,113 @@
+body{
+    padding-top:70px;
+}
+body, .jumbotron, .panel{
+	margin-bottom:10px;
+}
+/** SEARCH **/
+.sliderElement{
+	text-align:center;
+
+
+}
+.carCharacteristicsCheckbox{
+	float:right;
+	position:relative;
+	right: 30%;
+	
+}
+
+.carCharacteristicsLabel{
+	float:center;
+	padding-left:5%;
+}
+
+.carCharacteristicsIcon{
+	float:left;
+	}
+	
+	
+/** CANCEL CAR **/
+
+
+#carSelector{
+    width:130px;
+    float: left;
+}
+#priceSelector{
+    float: left;
+    margin-left:10px;
+}
+.slider.slider-horizontal{
+    width: 100px;
+}
+.col-sm-2 control-label{
+     text-align: center;
+}
+img{
+    border-radius: 10px;
+}
+.carName{
+    width: 55%;
+}
+.carPhoto{
+    width: 8%;
+}
+.carName{
+    width: 55%;
+}
+.accessories{
+   width: 20%;
+}
+
+/* LIST CARS */
+
+#announcerinfo{
+	padding-left: 50px;
+}
+
+.mylist{
+    list-style:none;
+}
+
+#testimonialsTitle{
+    padding-bottom:20px;
+}
+
+.list-group-item-heading{
+    font-size:16px;
+    font:bold;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    line-height: 20px;
+}
+
+.navbar-default .navbar-brand{
+    color:rgb(200, 100, 0);
+}
+
+.table{
+    display: grid;
+
+}
+.popupSelected{
+    height:60px;
+    max-width: 200px;
+}
+.price{
+    color: grey;
+}
+.brand_logo {
+    width: 38px;
+    height: 38px;
+    float: left;
+    background-repeat: no-repeat;
+}
+.bname{
+    margin-left: -left: 50px;
+    margin-top: 6px;
+    vertical-align:text-bottom;
+    text-align:left
+}

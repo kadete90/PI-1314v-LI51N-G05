@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width" />
+		<title>AutoMobile - Car</title>
+		<link href="css/blueimp-gallery.min.css" rel="stylesheet" />
+		<link href="css/bootstrap.min.css" rel="stylesheet"/>
+		<link href="css/bootstrap-image-gallery.min.css" rel="stylesheet"/>
+		<link href="css/slider.css" rel="stylesheet"/>
+		<link href="css/detailedCar.css" rel="stylesheet"/>
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/jquery.blueimp-gallery.min.js"></script>
+		<script src="js/bootstrap-image-gallery.min.js"></script>
+		<script src="js/bootstrap-slider.js"></script>
+	</head>
+	<body>
+		<!-- Fixed Navbar -->
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<p class="navbar-brand">AutoMobile</p>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="../Index">Home</a></li>
+						<li><a href="../AddCar">Add a Car</a></li>
+						<li><a href="../LogIn">Log In</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="../Search">Search</a></li>
+					</ul>
+				</div>
+			</div>
+		</div><!-- /Fixed Navbar -->
+        <!-- jumbotron & Gallery -->
+        <div class="container">
+            <!-- Jumbotron -->
+            <div class="jumbotron">
+                <div class="media" id ="carInfo">
+                    <img class="media-object" src="images/1.jpg"/>
+                    <div id="resumeInfo">
+                        <ul class="mylist">
+                            <h2 class="media-heading"><u>McLaren P1</u></h2>
+                            <li>Marca: <b>McLaren</b></li>
+                            <li>Modelo: <b>P1</b></li>
+                            <li>Versão: <b>Plus</b></li>
+                            <li>Ano: <b>2013</b></li>
+                            <li>Kilómetros: <b>10.000</b></li>
+                            <li>Combustível: <b>Gasolina</b></li>
+                            <li>Validade: <b>12 meses</b></li>
+                            <li>Valor negociável: <b>Sim</b></li>
+                            <li>Funcionalidades:</li>
+                            <img src="images/a1.jpg" width="21" title="Ar Condicionado">
+                            <img src="images/a2.jpg" width="21">
+                            <img src="images/a3.jpg" width="21" title="Vidros Elétricos">
+                            <img src="images/a4.jpg" width="21" title="Travas Eléticas">
+                            <img src="images/a5.jpg" width="21" title="Som">
+                            <img src="images/a6.jpg" width="21">
+                            <img src="images/a7.jpg" width="21">
+                        </ul>
+                    </div>
+                    <div id="otherInfo">
+                        <h3>4.000.000€</h3>
+                        <a id="buyButton" class="btn btn-primary" role="button">Comprar</a>
+                        <div class="qRCode">
+                            <img src="https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=%22McLaren%20P1%22&amp;choe=UTF-8&amp;chld=H">
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /Jumbotron -->
+            <!-- Gallery -->
+            <div id="gallery" class="panel panel-default">
+                <!-- Gallery-->
+                <div class="panel-heading">
+                    <h3 class="panel-title">Imagens & Videos</h3>
+</div>
+                <div class="panel-body">
+                    <div id="images" class="slides"/> 
+                        <a href="videos/2014%20McLaren%20P1.mp4" type="video/mp4" poster="videos/2014%20McLaren%20P1.mp4"
+                            title="video_1" data-gallery>
+                        <img src="images/play.jpeg" alt="image"/>
+                        </a>
+                        <a href="images/2.jpg" title="photo_2" data-gallery>
+                        <img src="images/2.jpg" alt="photo_2"/>
+                        </a>
+                        <a href="images/3.jpg" title="photo_3" data-gallery>
+                        <img src="images/3.jpg" alt="photo_3"/>
+                        </a>
+                        <a href="images/4.jpg" title="photo_4" data-gallery>
+                        <img src="images/4.jpg" alt="photo_4"/>
+                        </a>
+                        <a href="images/5.jpg" title="photo_5" data-gallery>
+                        <img src="images/5.jpg" alt="photo_5"/>
+                        </a>
+</div>
+            </div><!-- /Gallery--> 
+        </div><!--/ jumbotron & Gallery -->
+        <!-- Description -->
+        <div id="description" class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Equipamento & Descrição</h2>
+            </div>
+            <div class="panel-body" id="Information">
+                <p>
+                <td>
+                    <li>GPS</li>
+                    <li>Sensores de Estacionamento</li>
+                    <li>ABS</li>
+                    <li>AC Automático</li>
+                    <li>Bluetooth</li>
+                    <li>Jantes de Liga Leve</li>
+                    <li>Cor: Amarelo/Preto</li>
+                </td>
+                <td>
+                    <li>Leitor DVD</li>
+                    <li>Livro de revisões completo</li>
+                    <li>Portas: 4-5</li>
+                    <li>Não fumador</li>
+                    <li>Tonalidade dos estofos: cinzento</li>
+                    <li>Lotação: 4-5</li>
+                </td>
+                </p>
+            </div><!-- /Description -->
+</div><!-- /Description -->
+        <!-- Announcer -->        
+        <div id="announcer" class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Vendedor</h2>
+            </div>
+            <div id= "announcerinfo">
+                <h3>Telefone: 911 111 111</h3>
+                <ul class=" mylist">
+                    <li>Anunciante: Mário Augústo</li>
+                    <li>Localização: Lisboa</li>
+                    <li>Distrito: Cascais</li>
+                    <li>Stand: TerminalMotor</li>
+                    <li>Morada Completa: Rua dos pescadores, 2750-050 Cascais</li>
+                </ul>
+            </div>
+            <div id="showHideContact" class="btn btn-default navbar-btn"><b><span class="glyphicon glyphicon-envelope"></span> Contactar</b></div>
+            <form id="contactForm" role="form" method="POST" action="@Url.RouteUrl("Default")" enctype="multipart/form-data">          
+            <div class="col-sm-4 col-md-6">
+                <div class="form-group" id= "name">
+                    <label>O seu nome:</label>
+                    <input type="text" class="form-control" name="nameShort">                               
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-6">
+                <div class="form-group" id= "email">
+                    <label>E-mail: </label>
+                    <input type="text" class="form-control" name="pricePerWeek">                             
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="form-group" id= "phone">
+                    <label>Telefone/Telemóvel: </label>
+                    <input type="text" class="form-control" name="pricePerWeek">                             
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-8">
+                <div class="form-group" id= "text">
+                    <label>Texto: </label>
+                    <textarea class="form-control" name="descriptionLong" maxlength="400"></textarea>                         
+                </div>
+            </div>
+            <button id ="sendContact" type="submit" class="btn btn-default">Enviar</button>
+            </form>
+        </div><!-- /Announcer -->
+        <!-- Map --> 
+        <div id="mapPainel" class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Mapa</h2>
+            </div>
+            <div id="map_canvas">
+                <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.pt/maps?f=q&amp;source=s_q&amp;hl=pt-PT&amp;geocode=&amp;q=cascais&amp;sll=38.739732,-9.421371&amp;sspn=0.090379,0.154324&amp;ie=UTF8&amp;hq=&amp;hnear=Cascais,+Lisboa&amp;t=m&amp;z=12&amp;ll=38.696757,-9.420744&amp;output=embed"></iframe>
+            </div>
+        </div><!-- /Map --> 
+        <!-- Comments -->
+        <div id="comments" class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                Comentários</h3>
+            </div>
+            <div id="testimonialList" class="list-group">
+                <div class="list-group-item">
+                    comentarios
+                </div>
+            </div>
+            <div id="showHideComment" class="btn btn-default navbar-btn"><b><span class="glyphicon glyphicon-star"></span> Comentar</b></div>
+            <form id ="commentForm" method="post" class="input-group" enctype="text/plain">
+                <div class="slider slider-horizontal">
+                    <div class="slider-track">
+                        <div class="slider-selection"></div>
+                        <div class="slider-handle round"></div>
+                        <div class="slider-handle round"></div>
+                    </div>
+                    <div class="tooltip top in">
+                        <div class="tooltip-arrow"></div>
+                        <div class="tooltip-inner"></div>
+                    </div>
+                    <input id="input_rate_slider" type="text" data-slider-id='ex1Slider' data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="0">
+                </div>
+                <div id="newTestimonial" class="form-group">
+                    <textarea class="form-control" name="descriptionLong" maxlength="600"></textarea>                         
+                </div>
+                <button id ="sendComment" type="submit" class="btn btn-default">Enviar</button>
+            </form>
+            <!-- /input-group -->
+        </div><!-- /Comments -->
+  
+        <!-- Blueimp-gallery -->
+        <div id="blueimp-gallery" class="blueimp-gallery">
+                    <!-- The container for the modal slides -->
+                    <div class="slides"></div>
+                    <!-- Controls for the borderless lightbox -->
+                    <h3 class="title"></h3>
+                    <a class="prev">‹</a>
+                    <a class="next">›</a>
+                    <a class="close">×</a>
+                    <a class="play-pause"></a>
+                    <ol class="indicator"></ol>
+                    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+                    <div class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title"></h4>
+                                </div>
+                                <div class="modal-body next"></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left prev">
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Previous
+                                    </button>
+                                    <button type="button" class="btn btn-primary next">
+                                    Next
+                                    <i class="glyphicon glyphicon-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</div><!-- /Blueimp-gallery -->
+		<!-- /Comments -->
+		<!-- core JavaScript
+			================================================== -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+			    $("#input_rate_slider").slider({tooltip:'always'});
+			       $('body').on('click', '#showHideContact', function () {
+			           console.log("toggle clicked");
+			           $("#contactForm").toggle();
+			       });
+			       $('body').on('click', '#showHideComment', function () {
+			           console.log("toggle clicked");
+			           $("#commentForm").toggle();
+			       });
+			});
+		</script>
+		<!-- Placed at the end of the document so the pages load faster -->	 
+	</body>
+</html>

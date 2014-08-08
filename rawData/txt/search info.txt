@@ -1,0 +1,17 @@
+Ordenar por:
+	* KM
+	* Preço
+	* Ano
+
+
+Marca - Selector multiplo
+Por Stand
+
+Slider
+Ano
+Preço
+Kms
+tipo combustível
+é carro usado ?
+é negociável ?
+distrito

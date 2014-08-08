@@ -1,0 +1,112 @@
+body{
+    padding-top:70px;
+}
+body, .jumbotron, .panel{
+	margin-bottom:10px;
+}
+.navbar-brand {
+    font-size: 30px;
+    line-height: 20px;
+}
+.jumbotron{
+
+    margin-left: auto ;
+    margin-right: auto ;
+}
+.media-object{
+    margin-bottom: 5px;
+    width: 40%;
+    margin-left: auto ;
+    margin-right: auto ;
+    float: left;
+}
+.mylist{
+    list-style:none;
+}
+#otherInfo{
+    text-align:center;
+    margin-top: 3%;
+}
+img{
+    border-radius: 5px;
+}
+#carInfo .mylist{
+    float:left;
+}
+.qRCode img{
+    border-radius: 5px;
+    max-width: 120px;
+    margin-top: 10px;
+}
+#testimonialsTitle{
+    padding-bottom:20px;
+}
+.list-group-item-heading{
+    font-size:16px;
+    font:bold;
+}
+.navbar-default .navbar-brand{
+    color:rgb(200, 100, 0);
+}
+#images{
+    border-radius: 5px;
+    margin-left:4%;
+    margin-right:4%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    background-color: #EEEEEE;
+    text-align:center;
+}
+#images img{
+    border-width: 1px;
+    margin-bottom: 4px;
+    width: 94px;
+    height: 70px;
+}
+textarea{
+    resize: none;
+    height: 92px;
+}
+#announcerinfo, #map_canvas, #Information,
+#contactForm, #commentForm, #testimonialList{ 
+    margin-left: 10%;
+    margin-right: 10%;;
+}
+#commentForm {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#contactForm, #commentForm {
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom:10px;
+    background-color: #EEEEEE;
+    display: none;
+}
+#showHideContact, #showHideComment{
+    margin-left: 10%;
+    width: 160px;
+}
+#sendContact{
+    margin-left: 15px;
+}
+#map_canvas iframe{
+    width: 100%;
+    height: 200px;
+}
+
+.slider.slider-horizontal{
+    margin-left: 10px;
+    float:left;
+}
+.tooltip.top {
+	margin-top: -14px;
+}
+#newTestimonial{
+    width:100%;
+    float:left;
+    margin-bottom:10px;
+    margin-top:10px;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html style="">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Bootstrap Slider Example</title>
+
+    <!-- core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/slider.css" rel="stylesheet">
+  </head>
+
+  <body style="">
+
+      	<div class="slider-example">
+      		<div class="well">
+			<br/>
+      			Filter by price interval: <b>€ 10</b> 
+				<div class="slider slider-horizontal">
+					<div class="slider-track">
+						<div class="slider-selection"></div>
+						<div class="slider-handle round"></div>
+						<div class="slider-handle round"></div>
+					</div>
+					<div class="tooltip top">
+						<div class="tooltip-arrow"></div>
+						<div class="tooltip-inner">315 : 725</div>
+					</div>
+					<input id="slider" type="text" class="span2" value="" data-slider-id='ex1Slider' data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]" style="display: none;">
+				</div> <b>€ 1000</b>
+      		</div>
+		</div>
+
+    <!-- core JavaScript
+    ================================================== -->
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+	        $("#slider").slider({}); 
+    	});
+    </script>
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+</body></html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <title>AutoMobile - Car</title>
+
+    <link href="bootstrap-3.1.1-dist/css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/addCar.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<!-- Fixed Navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <p class="navbar-brand">AutoMobile</p>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                
+                <li><a href="../Index">Home</a></li>					
+                <li><a href="../AddCar">Add a Car</a></li>
+                <li><a href="../LogIn">Log In</a></li>
+                
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../Search">Search</a></li>
+            </ul>
+        </div>
+    </div>            
+</div><!--Navbar -->	
+<div class="container">	
+ <div class="jumbotron">
+        <h2>Adicione o seu Carro! <small>Os campos seguidos de *, são de preenchimento obrigatório</small></h2>
+ </div>
+    </div>
+    <div class="container">
+    <form role="form" method="POST" action="@Url.RouteUrl("Default")" enctype="multipart/form-data">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informação básica<small> informação referente ao carro</small></h3>
+            </div>
+            <div class="container">
+                
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Nome do Vendedor (login)*: </label>
+						<input type="text" class="form-control" name="nameShort">                            
+					</div>
+                </div>
+							
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Marca*: </label>				
+						<select class="form-control">
+							<option>BMW</option>					
+						</select>                          
+					</div>
+                </div>
+								
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Outra Marca*: </label>
+						<input type="text" class="form-control" name="nameShort">                          
+					</div>
+                </div>
+				
+					
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Modelo*: </label>
+						<input type="text" class="form-control" name="nameShort">                          
+					</div>
+                </div>
+					
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Versão: </label>
+						<input type="text" class="form-control" name="nameShort">                          
+					</div>
+                </div>
+				
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Ano*: </label>
+						<input type="number" class="form-control" name="nameShort">                          
+					</div>
+                </div>
+				
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Kilometros*: </label>
+						<input type="number" class="form-control" name="nameShort">                          
+					</div>
+                </div>
+				
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Distrito*: </label>
+						<input type="text" class="form-control" name="nameShort">                         
+					</div>
+                </div>
+				
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Conselho*: </label>
+						<input type="text" class="form-control" name="nameShort">                          
+					</div>
+                </div>
+				
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Kilometros*: </label>
+						<input type="number" class="form-control" name="nameShort">                          
+					</div>
+                </div>
+				
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label for="nameShort">Preço*: </label>
+						<input type="number" class="form-control" name="nameShort">                          
+					</div>
+                </div>
+					
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label class="checkbox">
+							<input type="checkbox"> Negociável?
+						</label>                          
+					</div>
+                </div>
+				
+                
+            </div>		
+
+				<div id="description" class="form-group">
+					<label for="descriptionLong">Descrição ou notas: </label>
+					<textarea class="form-control" name="descriptionLong" ></textarea>
+				</div>
+			
+        </div>
+        
+        <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Características do Carro<small> características e extras </small></h3>
+            </div>
+            <div class="container">
+                <div class="row">
+                   
+
+					<div class="col-sm-6 col-md-3">
+                        <div id="capacityf" class="form-group">
+                            <label for="characteristics.capacity">Ar condicionado</label>
+                            <img class="media-object" src="images/a1.jpg" alt="..." >
+							<input type="checkbox">
+                            
+                        </div>
+                    </div>
+					
+					<div class="col-sm-6 col-md-3">
+                        <div id="capacityf" class="form-group">
+                            <label for="characteristics.capacity">Direcção Assistida</label>
+                            <img class="media-object" src="images/a2.jpg" alt="..." >
+							<input type="checkbox">
+                            
+                        </div>
+                    </div>
+					
+					<div class="col-sm-6 col-md-3">
+                        <div id="capacityf" class="form-group">
+                            <label for="characteristics.capacity">Vidros Eléctricos</label>
+                            <img class="media-object" src="images/a3.jpg" alt="..." >
+							<input type="checkbox">
+                            
+                        </div>
+                    </div>
+					
+					<div class="col-sm-6 col-md-3">
+                        <div id="capacityf" class="form-group">
+                            <label for="characteristics.capacity">Fecho Eléctrico</label>
+                            <img class="media-object" src="images/a4.jpg" alt="..." >
+							<input type="checkbox">
+                            
+                        </div>
+                    </div>
+					
+					<div class="col-sm-6 col-md-3">
+                        <div id="capacityf" class="form-group">
+                            <label for="characteristics.capacity">Sistema de som</label>
+                            <img class="media-object" src="images/a5.jpg" alt="..." >
+							<input type="checkbox">
+                            
+                        </div>
+                    </div>
+					
+					<div class="col-sm-6 col-md-3">
+                        <div id="capacityf" class="form-group">
+                            <label for="characteristics.capacity">Caixa Automática</label>
+                            <img class="media-object" src="images/a6.jpg" alt="..." >
+							<input type="checkbox">
+                            
+                        </div>
+                    </div>
+										
+					<div class="col-sm-6 col-md-3">
+                        <div id="capacityf" class="form-group">
+                            <label for="characteristics.capacity">Tracção às 4 Rodas</label>
+                            <img class="media-object" src="images/a7.jpg" alt="..." >
+							<input type="checkbox">
+                            
+                        </div>
+                    </div>
+                    
+					
+					
+                </div>
+            </div><!--/container-->
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Localização (opcional)<small> localização do stand de automóveis</small></h3>
+            </div>
+            <div class="container">
+                <div class="row">
+                    
+					<div class="col-sm-4 col-md-3 loc">
+                        <div id="locName" class="form-group">
+                            <label for="location.name">Nome do Stand*: </label>
+                            <input type="text" class="form-control" name="location.name">
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-3 loc">
+                        <div id="latitude" class="form-group">
+                            <label for="location.coordinates.latitude">Latitude*: </label>
+                            <input type="text" class="form-control" name="location.coordinates.latitude">
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-3 loc">
+                        <div id="longitude"class="form-group">
+                            <label for="location.coordinates.longitude">Longitude*: </label>
+                            <input type="text" class="form-control" name="location.coordinates.longitude">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div><!--/container-->
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Fotos<small> Adicionar mais fotos ajuda a escolher melhor</small></h3>
+            </div>
+            <div class="container">
+                <div class="form-group">
+                    <label for="photos.mainPhoto">Foto principal: </label>
+                    <input type="file" name="mainPhoto" accept="image/*" />
+                </div>
+
+                <div class="form-group">
+                    <label for="photos.mainPhoto">Outras fotos & videos: </label>
+                    <input type="file" name="otherPhotoList" accept="image/*;videos/*" multiple />
+                </div>
+
+            </div><!--/container-->
+        </div>
+
+        <button type="submit" class="btn btn-default">Enviar</button>
+    </form>
+    
+</body>

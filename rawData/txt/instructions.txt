@@ -1,0 +1,25 @@
+Uma Anúncio de automóvel é caracterizado por:
+Título 
+Marca
+Modelo
+Versão
+Ano
+Km
+Combustível
+Localização 
+Distrito
+Concelho
+Nome Anunciante (tem que estar registado)
+Preço
+Indicação se é negociável ou não
+Validade
+
+
+A aplicação a desenvolver suporta as funcionalidades obrigatórias apresentadas em seguida (sem ordem). 
+-Visualização paginada da lista de anúncios (com informação resumida - sem detalhe) 
+-Visualizar detalhes do anúncio 
+-Adicionar comentário 
+-Adicionar classificação a um anúncio (0 a 5)
+-Adicionar/Editar um anúncio 
+-Cancelar/Remover anúncio (apenas o seu proprietário)
+-Pesquisa (com formulário para pesquisa de anúncios por todas as características de um anúncio (em modo _or). Se a característica for numérica (e.g. ano, preço, etc), poderá ser introduzido um intervalo (min e máx).
