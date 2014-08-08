@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "AutoMobileNode", "AutoMobileNode.njsproj", "{CCDBA162-1740-408D-836E-7550B325163B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCDBA162-1740-408D-836E-7550B325163B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCDBA162-1740-408D-836E-7550B325163B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCDBA162-1740-408D-836E-7550B325163B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCDBA162-1740-408D-836E-7550B325163B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

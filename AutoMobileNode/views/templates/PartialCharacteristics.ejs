@@ -1,0 +1,8 @@
+﻿<%     var characteristics = advert.Characteristics().Values(); %>
+ <% for (var i = 0; i < characteristics.length; i++){ %>
+	<%		var element = characteristics[i]; %>
+	<%		var idx = (element.exist===true) ? i+1:0; %>
+	<%		var url = "/images/CarCharacteristics/a" + idx +".jpg"; %>
+         <img src="<%=url%>" width="21" title="<%=element.description%>" />
+		 <!--TODO o width não faz nada ?!-->
+ <% } %>

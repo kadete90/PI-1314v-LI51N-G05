@@ -1,0 +1,91 @@
+<%- contentFor('headScript') %>
+    <link href="/css/account.css" rel="stylesheet" />
+
+
+<div id="EditAccount" class="ulAccountScheme">
+
+    <form role="form" method="POST" action="/Account/Edit/<%=user.username%>" enctype="multipart/form-data">
+        <h2>Editar conta</h2>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informacao do User <small>* campos obrigatorio</small></h3>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Username: </label>
+                    <input type="text" class="form-control" disabled="disabled" name="username" value='<%=user.username%>'/>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Password*:</label>
+                    <input type="password" class="form-control" name="Password" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Nova Password: </label>
+                    <input type="password" class="form-control" name="newPassword" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label>Nome*:</label>
+                    <input type="text" class="form-control" name="fullName" value='<%=user.fullname%>'/>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label>Email*:</label>
+                    <input type="email" class="form-control" name="email" value='<%=user.email%>'/>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Telemovel:  </label>
+                    <input type="tel" class="form-control" name="phoneNr" value='<%=user.number%>'/>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Districto: </label>
+                    @Html.Partial("PartialDropdownDistrictEnum")
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informacao do Stand <small>* campo obrigatorio</small></h3>
+            </div>
+        </div>
+        <div class="panel-body" id="standPanel">
+            <div class="col-sm-6 col-md-2">
+                <div class="form-group">
+                    <label>Stand?</label>
+                    <input type="checkbox" name="isStand" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5">
+                <div class="form-group">
+                    <label>Link: </label>
+                    <input type="url" class="form-control" name="standLink" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5">
+                <div class="form-group">
+                    <label>Endereco*:</label>
+                    <input type="text" class="form-control" name="fullAdress" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <a id="backIndex" href="/Account" class="btn btn-primary">Voltar</></a>
+            <button class="btn btn-warning" id="editAccountButton" type="submit">Alterar</button>
+        </div>
+    </form>
+</div>

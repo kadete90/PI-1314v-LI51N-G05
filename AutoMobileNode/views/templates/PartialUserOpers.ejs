@@ -1,0 +1,36 @@
+﻿<td>
+    <div id ="statusManageAd">
+        <% var statusEnum = enums.StatusModes()%>
+        <% var advertStatus = advert.Status() %>
+        <% if (advertStatus == statusEnum[2]){ %>
+            <span class="label label-warning"><label> <%= advertStatus %></label></span>
+
+        <%} else if (advertStatus == statusEnum[1]){ %>
+        <span class="label label-danger"><label><%advertStatus%>)</label></span>
+        <% } else { %>
+            <span class="label label-success"><label><%=advertStatus%> até <%=advert.ValidUntil().toLocaleDateString() %></label></span>
+        <%}%>
+    </div>
+    <a href="../Advert/Edit/<%=advert.Id()%>"><img src="/Images/UserManageIcons/pencil-icon.png" title="Edita o anúncio"/></a>
+
+    <% if (advertStatus == statusEnum[0]){ %>
+
+        <form action="../Advert/Cancel/<%=advert.Id()%>" method="get">
+            <button type="submit" formmethod="post" formaction="../Advert/Cancel/<%=advert.Id()%>"><img  src="/Images/UserManageIcons/Button-Stop-icon.png" title="Cancela o anúncio"> </button>
+        </form>
+
+    <%} else {%>
+
+        <form action="../Advert/Activate/<%=advert.Id()%>" method="get">
+            <button type="submit" formmethod="post" formaction="../Advert/Activate/<%=advert.Id()%>"><img  src="/Images/UserManageIcons/Accept-icon.png" title="Ativa o anúncio"> </button>
+        </form>
+
+    <%}%>
+
+    <form action="../Advert/Activate/<%=advert.Id()%>" method="get">
+        <button type="submit" formmethod="post" formaction="../Advert/Delete/<%=advert.Id()%>"><img  src="/Images/UserManageIcons/Quit-icon.png" title="Apaga o anúncio"> </button>
+    </form>
+
+
+
+</td>

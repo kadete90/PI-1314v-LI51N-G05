@@ -1,0 +1,52 @@
+<%- contentFor('headScript') %>
+<link href="/css/Home.css" rel="stylesheet" />
+<link href="/css/listAd.css" rel="stylesheet" />
+
+<%-contentFor('bodyContent')%>
+<!--Container -->
+<div class="container" id="containerId">
+    <div class="col-md-7 col-lg-9">
+        <!-- Car List -->
+        <div class="panel panel-info ">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <div class="bname">Últimos carros inseridos</div>
+            </div>
+            <!-- Table -->
+            <table class="table">
+                <tr id="headers">
+                    <td class="carPhoto"><b>Foto</b></td>
+                    <td class="carName"><b>Nome</b></td>
+                    <td class="price"><b>Preço</b></td>
+                    <td class="accessories"><b>Acessórios</b></td>
+                </tr>
+            <% for(var i = 0;i<adverts.length;i++){%>
+                <% var advert = adverts[i];%>
+                    <% include ../templates/PartialListAdvertWithCharacteristics.ejs %>
+            <%}%>
+            </table>
+            <!-- Table -->
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <div class="bname ">Últimos Utilizadores registados</div>
+            </div>
+            <!-- Table -->
+            <table class="table">
+                <tr id="headersUser">
+                    <td class="username"><b>Username</b></td>
+                    <td class="district"><b>Districto</b></td>
+                </tr>
+                <% for(var i = 0;i<users.length;i++){%>
+                    <% var user = users[i];%>
+                    <% include ../templates/PartialBasicInfoUser.ejs %>
+                <%}%>
+            </table>
+            <!-- Table -->
+        </div>
+    </div>
+</div>
+<!-- Car List -->

@@ -1,0 +1,68 @@
+#announcerinfo{
+	padding-left: 50px;
+}
+#testimonialsTitle{
+    padding-bottom:20px;
+}
+.popupSelected{
+    height:60px;
+    max-width: 200px;
+}
+.price{
+    color: grey;
+}
+.brand_logo {
+    width: 38px;
+    height: 38px;
+    float: left;
+    background-repeat: no-repeat;
+}
+.bname{
+    margin-left: -left: 50px;
+    margin-top: 6px;
+    vertical-align:text-bottom;
+    text-align:left
+}
+
+/*TO DO*/
+.logo_ma13 {
+    background: url(../images/cot_brands_and_log.png) -226px 0;
+    background-repeat: no-repeat;
+}
+.logo_ma19 {
+    background: url(../images/cot_brands_and_log.png) -513px 0;
+    background-repeat: no-repeat;
+}
+/*!TO DO*/
+
+#carSelector{
+    width:130px;
+    float: left;
+}
+#priceSelector{
+    float: left;
+    margin-left:10px;
+}
+.slider.slider-horizontal{
+    width: 100px;
+}
+.col-sm-2 control-label{
+     text-align: center;
+}
+img{
+    border-radius: 10px;
+}
+.carName{
+    width: 55%;
+}
+.carPhoto{
+    width: 8%;
+}
+.carName{
+    width: 55%;
+}
+.accessories{
+   width: 20%;
+}
+
+

@@ -1,0 +1,54 @@
+<%-contentFor('headScript') %>
+    <link href="/css/account.css" rel="stylesheet" />
+
+	
+<%-contentFor('bodyContent')%>
+<div id="indexAccount" class="ulAccountScheme">
+    <h2><%= user.username %></h2>
+    <ul>
+        <li>Nome: <%=user.fullName%></li>
+        <li>Email: <%= user.email%></li>
+        <li>Telemóvel: <%=user.number %></li>
+        <li>Districto: <%=user.district%></li>
+        <li>Data de Nascimento: <%=user.birthDate%></li>
+        <li>Data de Registo: <%=user.registerDate%></li>
+
+        <% if(user.isStand){%>
+            <h1>Informção do Stand</h1>
+            <li>Stand URL : <%=user.standLink%></li>
+            <li>Endereço : <%=user.fullAdress%></li>
+        <%}%>
+
+    </ul>
+    <br />
+    <div class="form-group">
+        <a id="editAccountButton" href="/Account/Edit" class="btn btn-warning">
+            Editar
+        </a>
+        <a onclick="checkDeleteAccount()" class="btn btn-danger">
+            Apagar
+        </a>
+    </div>
+    <br />
+    <span id="checkPassword" class="label label-danger"></span>
+    <script>
+        function checkDeleteAccount() {
+            var password = prompt("Confirme a sua password:");
+            if (password != null) {
+                if (password != String(@Model.Password))
+                   document.getElementById("checkPassword").innerHTML = "Password incorrecta! Tente Novamente!!";
+                else {
+                    $.ajax({
+                        url: '@Url.Action("Delete", "Account")',
+                        method: 'POST',
+                        success: function () {
+                            alert("Conta irá ser apagada!");
+                            window.location.href = '@Url.Action("Index", "Home")';
+                        }
+                    });
+                }
+
+            }
+        }
+    </script>
+</div>

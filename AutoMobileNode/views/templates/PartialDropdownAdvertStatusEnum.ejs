@@ -1,0 +1,6 @@
+﻿
+<%{
+    var status = from AdvertStatusEnum e in Enum.GetValues(typeof(AdvertStatusEnum)) select e;
+    @Html.DropDownList("Status", new SelectList(status),"Selecciona", new {@class="form-control"})
+    
+}%>

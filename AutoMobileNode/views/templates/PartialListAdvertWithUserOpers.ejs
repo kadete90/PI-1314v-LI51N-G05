@@ -1,0 +1,17 @@
+﻿<!-- model on object 'advert'-->
+
+<tr id="car<%=advert.Id()%>">
+    <td>
+        <% var imgUrl = "/images/carphotos/"+advert.DefaultPhoto().Link() %>
+        <img class="advertiseImage" src="<%=imgUrl%>"></td>
+    <td>
+        <p class="advertData"><a href="/advert/details/<%=advert.Id()%>"><%=advert.Brand()%> <%=advert.Model()%> <%=advert.Version()%> : <%=advert.Km ()%> Km's</a></p>
+        <p class="fuelType advertData"><%=advert.Year()%> - <%= advert.FuelType() %></p>
+    </td>
+    <td><%=advert.Price()%> €</td>
+    <td>
+        <% include PartialUserOpers.ejs %>
+    </td>
+</tr>
+
+

@@ -1,0 +1,43 @@
+<%- contentFor('headScript') %>
+<link href="/css/account.css" rel="stylesheet" />
+
+<%- contentFor('bodyContent')%>
+<div id="EditAdvertise" class="ulAccountScheme">
+
+    <form role="form" method="POST" action="/Advert/Edit/<%= advert.id %>" enctype="application/x-www-form-urlencoded">
+        <h2>Editar anúncio</h2>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informação do anúncio <small>* campos obrigatório</small></h3>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-6 col-md-3">
+                <div class="form-group">
+                    <label>Preço*:</label>
+                    <input type="number" class="form-control" name="Price" value='<%= advert.Price %>' />
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="form-group checkbox">
+                    <label>Negociável?</label>
+                    <%-HTMLHelper.form.checkBox("Negotiable") %>
+                </div>
+            </div>
+            <div id="description" class="col-sm-6 col-md-12">
+                <label>Descrição ou notas:</label> <small>; (ponto e vírgula) para separar por item</small>
+                <textarea class="form-control" maxlength="500" name="Description"></textarea>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>Password*:</label>
+                    <input type="password" class="form-control" name="Password" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <a id="backIndex" href="/Account/ManageAds" class="btn btn-primary">Voltar</a>
+        <button class="btn btn-warning" id="editAccountButton" type="submit">Alterar</button>
+</div>
+</form>
+</div>

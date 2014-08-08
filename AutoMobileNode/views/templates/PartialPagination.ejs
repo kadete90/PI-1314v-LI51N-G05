@@ -1,0 +1,31 @@
+﻿
+<div id="pagination">
+    <ul class="pagination">
+
+        {
+            var reqUri = @HttpUtility.ParseQueryString(@Url.RequestContext.HttpContext.Request.QueryString.ToString());
+            //var validPage = !String.IsNullOrWhiteSpace(reqUri["page"]);
+            var maxPages = @Model;
+            var @blink = "?" + (Convert.ToInt32(reqUri["page"]) - 1);
+            var @alink = "?" + (Convert.ToInt32(reqUri["page"]) + 1);
+            var @isFirstPage = Convert.ToInt32(reqUri["page"]) == 0;
+            var @isLastPage = Convert.ToInt32(reqUri["page"]) == maxPages;
+            //var @actualPage = Convert.ToInt32(reqUri["page"]);
+        }         
+        @if (@isFirstPage){         <li class="disabled"><a href="#">&laquo;</a></li>   }
+        else{                       <li><a href="@blink">&laquo;</a></li>   }
+               
+        @for (int i = 0; i <= maxPages; i++){
+
+            reqUri["page"] = @i.ToString(CultureInfo.InvariantCulture);
+            var link =/* @Url.Action("") */ "?" + reqUri;
+                
+            <li><a href="@link">@(i+1)</a></li>
+        }
+        @*if (actualPage == i){   <li class="active"><a href="@link">@(i+1)</a></li>}*@
+
+        @if (@isLastPage){          <li class="disabled"><a href="#">&raquo;</a></li>}
+        else{                       <li><a href="@alink">&raquo;</a></li>}    
+        
+    </ul>
+</div>

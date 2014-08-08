@@ -1,0 +1,5 @@
+    <option value="">-- Selecciona --</option>
+    <%for(var i =0;i<models.length;i++){%>
+        <option value="<%=models[i].value%>"><%=models[i].title%></option>
+    <%}%>
+    <!--< HTMLHelper.form.dropDownList('Models', null, models, { id:'Models', empty: '-- Select --',label:"title",value:"value", class:"form-control"})> -->

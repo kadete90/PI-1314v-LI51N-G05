@@ -1,0 +1,244 @@
+<%- contentFor('headScripts')%>
+<link href="/css/blueimp-gallery.min.css" rel="stylesheet" />
+<link href="/css/bootstrap-image-gallery.min.css" rel="stylesheet" />
+<link href="/css/slider.css" rel="stylesheet" />
+
+<link href="/css/detailedAd.css" rel="stylesheet" />
+
+<script src="/scripts/jquery.blueimp-gallery.min.js"></script>
+<script src="/scripts/bootstrap-image-gallery.min.js"></script>
+<script src="/scripts/bootstrap-slider.js"></script>
+
+
+
+<%- contentFor('bodyContent') %>
+<div id="detailedView">
+<!-- jumbotron & Gallery -->
+<div class="container">
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <div class="media" id="carInfo">
+            <%if(AdvertiseModel.Photos == null){%>
+                <img class="media-object" src="/images/CarPhotos/<%= AdvertiseModel.Photos()[0].Link() %>" />
+            <%}%>
+            <div id="resumeInfo">
+                <ul class="mylist">
+                    <h2 class="media-heading">
+                        <%= title %>
+                    </h2>
+                    <li>Marca: <b>  <%= AdvertiseModel.Brand() %> </b></li>
+                    <li>Modelo: <b>  <%= AdvertiseModel.Model() %> </b></li>
+
+                    <% var version = AdvertiseModel.Version() %>
+                    <% if(version !=null && /^\s+$/.test(version)) %>
+                    <li>Versão: <b>  <%= version %> </b></li>
+                    <li>Ano: <b>  <%= AdvertiseModel.Year() %> </b></li>
+                    <li>Kilómetros: <b>  <%= AdvertiseModel.Km() %> </b></li>
+                    <li>Combustível: <b>  <%= AdvertiseModel.FuelType() %> </b></li>
+                    <li>Validade: <b>  <%= AdvertiseModel.ValidUntil().toLocaleDateString() %> </b></li>
+
+                    <li>Valor negociável: <b>  <%= (AdvertiseModel.Negotiable() ? "Sim" : "Não") %> </b></li>
+                    <li>Funcionalidades:
+
+					
+					<% var advert = AdvertiseModel %>
+					<% include ../templates/PartialCharacteristics.ejs %> </li>
+                </ul>
+            </div>
+            <div id="otherInfo">
+                <h3>  <%= AdvertiseModel.Price() %> </h3>
+                <a id="buyButton" class="btn btn-primary" role="button">Comprar</a>
+                <div class="qRCode">
+                    <img src=" <%=stringFormat("https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=%22{0}%22&choe=UTF-8&chld=H", __mydomain+'/advert/details/'+ AdvertiseModel.Id()) %>"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Jumbotron -->
+    <!-- Gallery -->
+    <div id="gallery" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Imagens & Videos</h3>
+        </div>
+        <div class="panel-body">
+            <div id="images" class="slides" />
+            <% var photos = AdvertiseModel.Photos()%>
+            <% for (var i=0;i<photos.length;++i) {%>
+            <% var photo = photos[i];%>
+            <a href="/images/CarPhotos/<%=photo.Link()%>" title="<%= photo.Title() %>" data-gallery>
+                <img src="/images/CarPhotos/<%=photo.Link()%>" alt="<%= photo.Title() %>" />
+            </a>
+            <%}%>
+        </div>
+    </div>
+    <!-- /Gallery-->
+</div>
+<!--/ jumbotron & Gallery -->
+<!-- Description -->
+
+<div id="description" class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Equipamentos & Notas</h2>
+    </div>
+    <div class="panel-body" id="Information">
+        <p>
+        <td>
+            <% var desc = AdvertiseModel.Description();	%>			
+                 <%= desc %>
+            </li>
+                   
+        </td>
+        </p>
+    </div>
+    <!-- /Description -->
+</div>
+
+<!-- /Description -->
+<!-- Announcer -->
+<div id="announcer" class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Vendedor</h2>
+    </div>
+    <div id="announcerinfo">
+		<% var owner = UserModel.username%>
+		
+        <h3>Anunciante:  <%= owner %> </h3>
+        <ul class=" mylist">
+
+            <li>Telefone: <%= UserModel.phoneNr%> </li>
+            <li>Email: <%= UserModel.email%></li>
+
+            <%if (AdvertiseModel.GeoLocalization != null){%>
+            <li>Morada Completa: <%AdvertiseModel.GeoLocalization%> </li>
+            <%}%>
+
+        </ul>
+    </div>
+    <div id="showHideContact" class="btn btn-default navbar-btn"><b><span class="glyphicon glyphicon-envelope"></span> Contactar</b></div>
+    <form id="contactForm" role="form" method="post" action="/advert/VendorContact" enctype="application/x-www-form-urlencoded">
+
+
+        <div class="col-sm-4 col-md-6">
+            <div class="form-group" id="name">
+                <label>O seu nome:</label>
+                <input type="text" class="form-control" name="name" />
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-6">
+            <div class="form-group" id="email">
+                <label>E-mail: </label>
+                <input type="text" class="form-control" name="email" />
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <div class="form-group" id="phone">
+                <label>Telefone/Telemóvel: </label>
+                <input type="text" class="form-control" name="phone" />
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-8">
+            <div class="form-group" id="text">
+                <label>Texto: </label>
+                <textarea class="form-control" name="text" maxlength="400"></textarea>
+            </div>
+        </div>
+        <div class="col-sm-2 col-md-2">
+            <div class="form-group hidden">
+                <input type="number" class="form-control" name="adId" value="AdvertModel.Id%>" />
+            </div>
+        </div>
+        <button id="sendContact" type="submit" class="btn btn-default">Enviar</button>
+    </form>
+</div>
+<!-- /Announcer -->
+<!-- Map -->
+
+<%if (AdvertiseModel.GeoLocalization != null && AdvertiseModel.GeoLocalization.hasCoordinate){ %>
+<div id="mapPainel" class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Mapa</h2>
+    </div>
+    <div id="map_canvas">
+        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.pt/maps?f=q&amp;source=s_q&amp;hl=pt-PT&amp;geocode=&amp;q=cascais&amp;sll=38.739732,-9.421371&amp;sspn=0.090379,0.154324&amp;ie=UTF8&amp;hq=&amp;hnear=Cascais,+Lisboa&amp;t=m&amp;z=12&amp;ll=38.696757,-9.420744&amp;output=embed"></iframe>
+    </div>
+</div>
+<%}%>
+
+<!-- /Map -->
+<!-- Comments -->
+<div id="comments" class="panel panel-default">
+    <input type="hidden" name="adId" id="advert" value="1" />
+    <div class="panel-heading">
+        <h2 class="panel-title">Comentários</h2>
+    </div>
+    <div id="commentList" class="list-group">
+        <div class="list-group-item">
+									
+			<% var come = AdvertiseModel.comments; %>									
+			<% for (var i = 0; i<come.length; ++i){ %>
+				<% include ../templates/PartialCommentary.ejs %>
+			<%}%>
+			
+        </div>
+    </div>
+    <div id="showHideComment" class="btn btn-default navbar-btn"><b><span class="glyphicon glyphicon-star"></span> Comentar</b></div>
+   
+    <form id="commentForm" method="Post" action="/Advert/Commentary" class="input-group"  enctype="application/x-www-form-urlencoded">
+        <input type="hidden" class="form-control" name="Username" value="loggedUser"/>
+        <div class="slider slider-horizontal" id="RatingSlider">
+            <div class="slider-track">
+                <div class="slider-selection"></div>
+                <div class="slider-handle round"></div>
+                <div class="slider-handle round"></div>
+            </div>
+            <input id="input_rate_slider" class="span2 sliderClicker" type="number" data-slider-id='RatingSlider' data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="0">
+            <input type="number" class="hidden" id ="StartRatingSlider" name="Rating" >
+            <input type="number" class="hidden disabled" name="adId" value="<%=AdvertiseModel.Id()%>" >
+
+        </div>
+        <div id="newComment" class="form-group">
+            <textarea class="form-control" name="Message" maxlength="600"></textarea>
+        </div>
+        <button id="sendComment" type="submit" class="btn btn-default">Enviar</button>
+    </form>
+    <!-- /input-group -->
+</div>
+<!-- /Comments -->
+<!-- Blueimp-gallery -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Blueimp-gallery -->
+</div>

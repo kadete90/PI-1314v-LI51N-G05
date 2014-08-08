@@ -1,0 +1,68 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Public-Type" content="text/html" charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title><%= (_.has(this,'title'))? title:"AutoMobile" %></title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    <link href="/css/global.css" rel="stylesheet" media="screen"/>
+    <link href="/images/favicon.ico" rel="icon" />
+    <script src="/scripts/jquery-2.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery.ddslick.min.js"></script>
+    <%-defineContent('headScript')%>
+
+</head>
+<body>
+
+<!-- Fixed Navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/">
+                <p class="navbar-brand">AutoMobile</p>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/Advert/">Anúncios</a></li>
+                <li><a href="/Advert/Search">Procurar</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <%if (_.has(this,'reqUser')) { %>
+                <li><a href="/Account/Login">Log In</a></li>
+                <li><a href="/Account/Create">Registar</a></li>
+                <%} else { %>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerir conta<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Account/Index">Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/Account/ManageAds">Gerir anúncios</a></li>
+                        <li><a href="/Advert/add">Criar anúncio</a></li>
+                    </ul>
+                </li>
+                <li><a href="/Account/Logout">Log Out</a></li>
+                <%}%>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--Navbar -->
+
+<%-defineContent('bodyContent')%>
+
+
+<br />
+<footer><span class="label label-default">Copyright G05 PI 13/14 SVer. All Rights Reserved.</span></footer>
+</body>
+</html>

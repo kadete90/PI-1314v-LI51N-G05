@@ -1,0 +1,75 @@
+<%- contentFor('headScript') %>
+<link href="/css/listAd.css" rel="stylesheet" />
+
+<script>
+    
+    function checkDeleteAdvertise(idAdvert) {
+       
+	   var password = prompt("Confirme a sua password:");
+       if (password != null) {
+
+           AdvertiseModel.ge
+           var advert = advertLogic.get(idAdvert);
+           var user = accountLogic.get(advert.owner);
+            alert("ok");
+           if (password != user.Password) {
+               console.log(password);
+               console.log(user.Password);
+               document.getElementById("checkPassword").innerHTML = "Anuncio " + idAdvert + ", Password incorrecta! Tente Novamente!!";
+           }
+           else {
+               $.ajax({
+                   url: "/Advert/Delete",
+                   type: "POST",
+                   data: {id: Number(id)},
+                   success: function () {
+                       alert("O anuncio irá ser apagado!");
+                       window.location.href = data.redirect;
+                   },
+                   error: function(){
+                       alert("Remoção não efectuada!");
+                   }
+               });
+           }
+       }
+
+    }
+</script>
+
+
+<%- contentFor('bodyContent')%>
+
+<!--Container -->
+<div class="container" id="containerId">
+    <!-- Car List -->
+    <span id="checkPassword" class="label label-danger center-block"></span>
+    <% for(var brandName in AdvertiseModel){ %>
+
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <div class="brand_logo">
+                    <span class="<%=brandName%>_logo"/>
+                    <img src="/images/CarBrands/<%=brandName.replace(' ','_')%>_logo.jpg"/>
+                </div>
+                <div class="bname"><%=brandName%></div>
+            </div>
+            <!-- Table -->
+            <table class="table" id="<%=brandName%>">
+                <tr id="headers">
+                    <td class="carPhoto"><b>Foto</b></td>
+                    <td class="carName"><b>Nome</b></td>
+                    <td class="price"><b>Preço</b></td>
+                    <td class="options"><b>Opções</b></td>
+                </tr>
+                <% for(var advId = 0;advId< AdvertiseModel[brandName].length; advId++) {%>
+                    <% var advert = AdvertiseModel[brandName][advId] ; %>
+                    <%  include ../templates/PartialListAdvertWithUserOpers.ejs %>
+                <%}%>
+            </table>
+
+            <!-- Table -->
+        </div>
+    <%}%>
+</div>
+<!-- Car List -->

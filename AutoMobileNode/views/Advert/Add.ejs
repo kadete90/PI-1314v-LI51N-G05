@@ -1,0 +1,199 @@
+<%- contentFor('headScript') %>
+<link href="/css/searchAd.css" rel="stylesheet" />
+<script type="application/javascript" src="/scripts/jsClient/brandAjaxRequest.js"></script>
+
+<%- contentFor('bodyContent')%>
+<div class="container">
+    <div class="jumbotron">
+        <h2>Adicione o seu Carro! <small>Os campos seguidos de *, são de preenchimento obrigatório</small></h2>
+    </div>
+</div>
+
+<script>
+
+    window.onload=function() {
+
+        document.getElementById("Brands").onchange=validateField;
+        document.getElementById("Modules").onchange=validateField;
+        //document.getElementById("firstfield").onblur=mandatoryField;
+        //document.getElementById("testform").onsubmit=finalCheck;
+    }
+
+
+    function removealert() {
+
+        var msg = document.getElementById("msg");
+        if (msg) {
+            document.body.removeChild(msg);
+        }
+    }
+
+    function resetField(elem) {
+        elem.parentNode.setAttribute("style","background-color: #ffffff");
+        var valid = elem.getAttribute("aria-invalid");
+        if (valid) elem.removeAttribute("aria-invalid");
+    }
+
+    function badField(elem) {
+        elem.parentNode.setAttribute("style", "background-color: #ffeeee");
+        elem.setAttribute("aria-invalid","true");
+    }
+
+    function generatealert(txt) {
+
+        var txtNd = document.createTextNode(txt);
+        msg = document.createElement("div");
+        msg.setAttribute("role","alert");
+        msg.setAttribute("id","msg");
+        msg.setAttribute("class","alert");
+
+
+        msg.appendChild(txtNd);
+        document.body.appendChild(msg);
+    }
+
+    function validateField() {
+
+        removealert();
+
+        if (!(undefined || "" || isNull)) {
+            resetField(this);
+        } else {
+            badField(this);
+            generatealert("É Necessário selecionar uma opção");
+        }
+    }
+
+    function mandatoryField() {
+
+        // remove any existing alert
+        removealert();
+
+        // check for value
+        if (this.value.length > 0) {
+            resetField(this);
+        } else {
+            badField(this);
+            generatealert("You must enter a value into First Field");
+        }
+    }
+
+    function finalCheck() {
+
+        removealert();
+
+        var fields = document.querySelectorAll("[aria-invalid='true']");
+        if (fields.length > 0) {
+            generatealert("You have incorrect fields entries that must be
+            fixed before you can submit this form");
+            return false;
+        }
+    }
+
+
+
+</script>
+
+<div class="container">
+    <form role="form" method="post" action="/Advert/Add" enctype="multipart/form-data">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informação básica<small> informação referente ao carro</small></h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-2 col-md-3">
+                    <div class="form-group">
+                        <label>Marca:</label>
+                        <% include ../templates/PartialDropdownBrands.ejs %>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-3">
+                    <div class="form-group">
+                        <label>Modelo: </label>
+                        <select id="Models" name="Model" class="form-control">
+                            <option value="">Select Brand ...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-2 col-md-3">
+                    <div class="form-group">
+                        <label>Versão: </label>
+                        <input type="text" class="form-control" name="Version" />
+                    </div>
+                </div>
+
+                <div class="col-sm-2 col-md-3">
+                    <div class="form-group">
+                        <label >Ano*: </label>
+                        <input type="number" class="form-control" name="Year" />
+                    </div>
+                </div>
+
+                <div class="col-sm-2 col-md-3">
+                    <div class="form-group">
+                        <label >Kilometros*: </label>
+                        <input type="number" class="form-control" name="Kilometers" />
+                    </div>
+                </div>
+
+                <div class="col-sm-2 col-md-3">
+                    <div class="form-group">
+                        <label >Combustível*: </label>
+                        <%  include ../templates/PartialDropdownFuelTypeEnum.ejs %>
+                    </div>
+                </div>
+
+                <div class="col-sm-2 col-md-3">
+                    <div class="form-group">
+                        <label >Preço*: </label>
+                        <input type="number" class="form-control" name="Price" />
+
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-3">
+                    <div class="form-group checkbox">
+                        <label>Negociável?</label>
+                        <%- HTMLHelper.form.checkBox("Negotiable") %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Descrição ou notas <small> ; (ponto e vírgula) para listar </small></h3>
+            </div>
+            <div class="panel-body">
+                <textarea class="form-control" maxlength="500" name="Description"></textarea>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Características do Carro<small> características e extras </small></h3>
+            </div>
+            <div class="panel-body" name = "Caracteristics">
+                <div class="row">
+                    <% include ../templates/PartialCharacteristicsForm.ejs %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Fotos<small> Adicionar mais fotos ajuda a escolher melhor</small></h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Fotos & videos: </label>
+                    <input type="file" name="otherPhotoList" accept="image/*;videos/*" multiple />
+
+                </div>
+            </div>
+            <!--/container-->
+        </div>
+        <button type="submit" class="btn btn-primary">>> Criar <<</button>
+
+    </form>
+</div>
